@@ -1,6 +1,8 @@
 package com.rand;
+
 import java.util.Random;
 import java.io.PrintWriter;
+
 import com.github.javafaker.Faker;
 
 /**
@@ -66,6 +68,14 @@ public class Randomize {
                 String bandName = faker.address().cityName() + " " + faker.animal().name() + " "
                         + faker.color().name(); // TODO check this
                 String country = faker.address().country(); // TODO this can get long
+
+                // filter out countries that mess with the file
+                if (country.contains(",")) {
+                    //System.out.println("Error Found: " + country);
+                    while (country.contains(",")) {
+                        country = faker.address().country(); // TODO this can get long
+                    }
+                }
                 String yearFormed = Integer.toString(rand.nextInt((2022 - 1900) + 1) + 1900);
                 // write to file
                 printBand.write(bid + "," + bandName + "," + country + "," + yearFormed + "\n");
@@ -101,7 +111,7 @@ public class Randomize {
                     printSong.write(songNum + "," + songName + "," + cid + "," + duration + "\n");
                 }
             }
-            
+
             printSong.close();
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
