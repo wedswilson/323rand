@@ -27,11 +27,11 @@ public class Randomize {
         try {
             Faker faker = new Faker(); // fake data generator
             Random rand = new Random(); // random number generator
+
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
             // Person
             // int PID, firstName, lastName, birthdate
-            // start from 11 because small data finished at 10**
             PrintWriter printPerson = new PrintWriter(personFile);
             for (int pid = personCount; pid < 120000; pid++) {
                 String firstName = faker.name().firstName();
@@ -42,6 +42,7 @@ public class Randomize {
                 printPerson.write(pid + "," + firstName + "," + lastName + "," + dob + "\n");
             }
             printPerson.close();
+
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
             // Artist
@@ -60,7 +61,6 @@ public class Randomize {
 
             // Band
             // int BID, bandName, country, yearFormed
-            // start from 11 because bc of small data
             PrintWriter printBand = new PrintWriter(bandFile);
             for (int bid = bandCount; bid < 120000; bid++) {
                 String bandName = faker.address().cityName() + " " + faker.animal().name() + " "
@@ -76,7 +76,6 @@ public class Randomize {
 
             // Collection
             // int CID, title, album, yearCreated
-            // start at 11 bc small data**
             PrintWriter printCollection = new PrintWriter(collectionFile);
             for (int cid = collectionCount; cid < 120000; cid++) {
                 String collectionName = faker.nation().language() + " " + faker.color().name() + " "
@@ -86,6 +85,7 @@ public class Randomize {
                 printCollection.write(cid + "," + collectionName + ",Album," + year + "\n");
             }
             printCollection.close();
+
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
             //SONG
@@ -101,8 +101,10 @@ public class Randomize {
                     printSong.write(songNum + "," + songName + "," + cid + "," + duration + "\n");
                 }
             }
+            
             printSong.close();
             //////////////////////////////////////////////////////////////////////////////////////////////////
+
             System.out.println("CSVs done!");
 
         } catch (Exception e) {
