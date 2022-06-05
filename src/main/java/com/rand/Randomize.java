@@ -16,6 +16,8 @@ public class Randomize {
     static String bandFile = "C:\\Users\\Weds\\Desktop\\323 Full Project\\Data\\band.csv";
     static String collectionFile = "C:\\Users\\Weds\\Desktop\\323 Full Project\\Data\\collection.csv";
     static String songFile = "C:\\Users\\Weds\\Desktop\\323 Full Project\\Data\\song.csv";
+    static String artistCollectionFile = "C:\\Users\\Weds\\Desktop\\323 Full Project\\Data\\artistCollection.csv";
+    static String bandCollectionFile = "C:\\Users\\Weds\\Desktop\\323 Full Project\\Data\\bandCollection.csv";
 
     // start index = number of entries already in DB + 1
     // song count is per collection so not necessary
@@ -30,7 +32,7 @@ public class Randomize {
             Faker faker = new Faker(); // fake data generator
             Random rand = new Random(); // random number generator
 
-            //////////////////////////////////////////////////////////////////////////////////////////////////
+/*            //////////////////////////////////////////////////////////////////////////////////////////////////
 
             // Person
             // int PID, firstName, lastName, birthdate
@@ -112,7 +114,61 @@ public class Randomize {
                 }
             }
 
-            printSong.close();
+            printSong.close();*/
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // CID 1-5 are currently claimed by small data sets
+/*            // so start assigning from 6
+
+            // Total collections = 119998 - 5 = 119,993
+            // Use half for artist collection and other half for band collection
+            // overestimate at 60,000
+
+            // available artists = 59993
+            // first 5 artists have records assigned
+
+            int recordsNeeded = 60000;
+            int startCID = 6;
+            int startPID = 12;
+            // ARTIST Collection
+            // int PID, int CID
+
+            PrintWriter printArtistCollection = new PrintWriter(artistCollectionFile);
+            for (int cid = startCID; cid < recordsNeeded; cid++) {
+                // write to file
+                printArtistCollection.write(startPID+ "," + cid + "\n");
+                startPID++;
+            }
+            printArtistCollection.close();*/
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////
+            // 59999
+
+            // BID 1-5 are currently claimed by small data sets
+            // so start assigning from 6
+
+            // Total collections = 119998 - 5 =
+            // 119,993 - 59999
+            // Use half for artist collection and other half for band collection
+            // overestimate at 60,000
+
+            // available artists = 59993
+            // first 5 artists have records assigned
+
+            int recordsNeeded = 59994;
+            int startBID = 6;
+            int startCID = 60000;
+            // BAND Collection
+            // int BID, int CID
+
+            PrintWriter printBandCollection = new PrintWriter(bandCollectionFile);
+            for (int bid = startBID; bid < recordsNeeded; bid++) {
+                // write to file
+                printBandCollection.write(bid + "," + startCID + "\n");
+                startCID++;
+            }
+            printBandCollection.close();
+
             //////////////////////////////////////////////////////////////////////////////////////////////////
 
             System.out.println("CSVs done!");
